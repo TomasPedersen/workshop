@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class GuiMainWindow {
+class GuiMainWindow {
 	private Stage gmwStage = null;
 	private ObservableList<Person> persons = null;
 	private TextField addName = null;
@@ -32,9 +32,9 @@ public class GuiMainWindow {
 
 	/**
 	 * Method to create the main window.
-	 * @param persons
+	 * @param persons Liste med alle deltagere i workshoppen.
 	 */
-	public void create(ObservableList<Person> persons){
+	void create(ObservableList<Person> persons){
 		table = new TableView(persons);
 		table.setEditable(false);
 
@@ -74,7 +74,7 @@ public class GuiMainWindow {
 		editButton = new Button();
 		table.setEditable(true);	// Sættes til edit, fordi handleEditButtonAction toggler. TODO: Lav det mere elegant.
 		toggleEditButton();	// Kaldes for at sætte tekst på knappen.
-		editButton.setOnAction(event -> { toggleEditButton(); });
+		editButton.setOnAction(event -> toggleEditButton());
 
 		// Listeners til textfields. Sæt indhold af label til ingenting når fokus fjernes.
 		addName.focusedProperty().addListener((obs, oldval, newval) -> entriesLabel.setText( newval ? addName.getPromptText() : "" ));
@@ -116,7 +116,7 @@ public class GuiMainWindow {
 		addName.requestFocus();
 	}
 
-	void commitEntries(){
+	private void commitEntries(){
 		persons.add( new Person(addName.getText(), addPhone.getText(), addEmail.getText()) );
 		addName.clear(); addPhone.clear(); addEmail.clear();
 		addName.requestFocus();		// Flyt cursor, klar til ny indtastning.
@@ -124,7 +124,7 @@ public class GuiMainWindow {
 	/**
 	 * Toggle editable state for table. Change text on button accordingly.
 	 */
-	void toggleEditButton(){
+	private void toggleEditButton(){
 		if (table.isEditable()) {
 			table.setEditable(false);
 			editButton.setText("Ret");
@@ -133,7 +133,7 @@ public class GuiMainWindow {
 			editButton.setText("Lås");
 		}
 	}
-	MenuBar createMenu(Stage stage){
+	private MenuBar createMenu(Stage stage){
 		MenuBar menuBar = new MenuBar();
 
 		// Menu File
@@ -154,32 +154,19 @@ public class GuiMainWindow {
 		});
 
 		// Menupunkt: Dan grupper.
-		GuiCreateGroups gcg = new GuiCreateGroups();
-		//TODO: Det skal nok være noget med en observable.
-		/*retVal.addListener(new ListChangeListener<String>() {
-			@Override
-			public void onChanged(ListChangeListener.Change change){
-				while(change.next()){
-					System.out.println("Change: "+change);
-				}
-			}
-		});*/
 		retVal.addListener((ListChangeListener) (ListChangeListener.Change event) -> {	//TODO: Annotations.xml, aner ikke hvad det går ud på.
 			while(event.next()){
 				System.out.println(event);
 			}
 		});
-
-		// Kald nyt vindue.
+		// Opret nyt vindue til dan grupper.
 		createGroups.setOnAction(event -> {
-			gcg.create(retVal);
+			new GuiCreateGroups().create(retVal);
 			createGroups.setDisable(true);
 		});
-		exitMI.setOnAction(event -> {
-			stage.close();
-		});
+		exitMI.setOnAction(event ->	stage.close());
 
-		// Menu Indstillinger
+		// Menu: Indstillinger
 		Menu settingsMenu = new Menu("_Indstillinger");
 		MenuItem databaseMI = new MenuItem("_Database");
 		settingsMenu.getItems().addAll(databaseMI);

@@ -5,8 +5,8 @@ public class Person {
 	private SimpleStringProperty phoneNumber;
 	private SimpleStringProperty emailAddress;
 	private enum Gender {M,K,NA}
-	private Gender gender;
-	
+	Gender gender;
+
 	Person (String name, String phoneNumber, String emailAddress, Gender gender){
 		this.name = new SimpleStringProperty(name);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
