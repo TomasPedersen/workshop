@@ -1,3 +1,6 @@
+package guione;
+
+import model.*;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.stage.Stage;
@@ -10,7 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-class GuiMainWindow {
+public class GuiMainWindow {
 	private Stage gmwStage = null;
 	private ObservableList<Person> persons = null;
 	private TextField addName = null;
@@ -22,10 +25,10 @@ class GuiMainWindow {
 	private ObservableList<String> retVal = FXCollections.observableArrayList();
 
 	// Constructors.
-	GuiMainWindow(){
+	public GuiMainWindow(){
 		this(new Stage());
 	}
-	GuiMainWindow(Stage gmwStage){
+	public GuiMainWindow(Stage gmwStage){
 		this.gmwStage = gmwStage;
 		gmwStage.setTitle("Workshop Organiser");
 	}
@@ -34,7 +37,7 @@ class GuiMainWindow {
 	 * Method to create the main window.
 	 * @param persons Liste med alle deltagere i workshoppen.
 	 */
-	void create(ObservableList<Person> persons){
+	public void create(ObservableList<Person> persons){
 		table = new TableView(persons);
 		table.setEditable(false);
 
@@ -89,6 +92,9 @@ class GuiMainWindow {
 				entriesLabel.setText(addPhone.getPromptText());
 			}
 		});
+		// Start med fokus sat til indtastning.
+		addName.requestFocus();
+
 		// Skift til næste tekstfelt, email, når der trykkes enter.
 		addPhone.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) {
@@ -111,9 +117,6 @@ class GuiMainWindow {
 		gmwStage.setScene(scene);
 		gmwStage.setTitle("Workshop Organiser");
 		gmwStage.show();
-
-		// Start med fokus sat til indtastning.
-		addName.requestFocus();
 	}
 
 	private void commitEntries(){
@@ -121,9 +124,7 @@ class GuiMainWindow {
 		addName.clear(); addPhone.clear(); addEmail.clear();
 		addName.requestFocus();		// Flyt cursor, klar til ny indtastning.
 	}
-	/**
-	 * Toggle editable state for table. Change text on button accordingly.
-	 */
+
 	private void toggleEditButton(){
 		if (table.isEditable()) {
 			table.setEditable(false);
@@ -154,7 +155,7 @@ class GuiMainWindow {
 		});
 
 		// Menupunkt: Dan grupper.
-		retVal.addListener((ListChangeListener) (ListChangeListener.Change event) -> {	//TODO: Annotations.xml, aner ikke hvad det går ud på.
+		retVal.addListener((ListChangeListener) (ListChangeListener.Change event) -> {
 			while(event.next()){
 				System.out.println(event);
 			}

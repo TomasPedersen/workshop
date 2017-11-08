@@ -1,12 +1,22 @@
+package model;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 
+/**
+ * Denne klasse henter data fra en databaseserver for at aflevere det i klassen Data.
+ */
 public class Database {
     private Connection connect = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
 
+	/**
+	 * Ineffektiv. Der laves en kopi af data blot for at kunne returnere det.
+	 * Brug hellere readData(ObservableList<Person> persons)
+	 * @return
+	 */
 	public ObservableList<Person> readData(){
 		ObservableList<Person> persons = FXCollections.observableArrayList();
 		try{
@@ -28,7 +38,7 @@ public class Database {
 	public void readData(ObservableList<Person> persons) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://192.168.1.3/workshop?user=workshop&password=WorkshopPassword");
+			connect = DriverManager.getConnection("jdbc:mysql://patina.dyndns.dk/workshop?user=workshop&password=WorkshopPassword");
 			statement = connect.createStatement();
 			resultSet = statement.executeQuery("SELECT first_name,phone,email FROM persons");
 

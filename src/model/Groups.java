@@ -1,6 +1,8 @@
+package model;
+
 import javafx.collections.ObservableList;
 
-class Groups {
+public class Groups {
 	public void create(int numGroups, int groupSize){
 		ObservableList<Person> persons = new Data().getData();
 

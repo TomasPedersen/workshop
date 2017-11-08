@@ -1,3 +1,5 @@
+package guione;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -13,11 +15,11 @@ public class GuiCreateGroups {
 	ComboBox sizeBox = null;
 	Stage gcgStage = null;
 
-	GuiCreateGroups(Stage gcgStage){
+	public GuiCreateGroups(Stage gcgStage){
 		this.gcgStage = gcgStage;
 		gcgStage.setTitle("Dan grupper");
 	}
-	GuiCreateGroups(){
+	public GuiCreateGroups(){
 		this(new Stage());
 	}
 
@@ -76,8 +78,7 @@ public class GuiCreateGroups {
 	}
 
 	private void handleOkButton(){
-		gcgStage.close();	//TODO: Klik på OK skal ikke blot lukke vinduet. Det skal også starte dannelse af grupper med de valgte parametre.
-		//new Groups().create(Integer.valueOf(sizeBox.getValue().toString()), Integer.valueOf(groupsBox.getValue().toString()));
+		gcgStage.close();	// Luk vindue. Parametre er returneret til controller via ObservableList retVal.
 	}
 	private void calculateProduct(){
 		if( (groupsBox.getValue() != null) && (sizeBox.getValue() != null) ){

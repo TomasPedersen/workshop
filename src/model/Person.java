@@ -1,3 +1,5 @@
+package model;
+
 import javafx.beans.property.SimpleStringProperty;
 
 public class Person {
@@ -7,13 +9,13 @@ public class Person {
 	private enum Gender {M,K,NA}
 	Gender gender;
 
-	Person (String name, String phoneNumber, String emailAddress, Gender gender){
+	public Person (String name, String phoneNumber, String emailAddress, Gender gender){
 		this.name = new SimpleStringProperty(name);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.emailAddress = new SimpleStringProperty(emailAddress);
 		this.gender = gender;
 	}
-	Person (String name, String phoneNumber, String emailAddress){
+	public Person (String name, String phoneNumber, String emailAddress){
 		this(name, phoneNumber, emailAddress, Gender.NA);	// Kald constructer med fire paramtre og tilføj gender som ikke kendt.
 	}
 	
