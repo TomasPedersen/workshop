@@ -13,10 +13,16 @@ public class GuiCreateGroups {
 	ComboBox sizeBox = null;
 	Stage gcgStage = null;
 
+	GuiCreateGroups(Stage gcgStage){
+		this.gcgStage = gcgStage;
+		gcgStage.setTitle("Dan grupper");
+	}
+	GuiCreateGroups(){
+		this(new Stage());
+	}
+
 	public void create(ObservableList<String> retVal)  {
 		resultLabel = new Label();
-		gcgStage = new Stage();
-		gcgStage.setTitle("Dan grupper");
 		// Der skal være to elementer i retVal, ellers går der ged i det.
 		retVal.add("0");
 		retVal.add("0");
