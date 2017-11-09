@@ -7,6 +7,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.stage.Stage;
+import model.Group;
 import model.Person;
 
 public class GuiMainWindow {
@@ -21,12 +22,7 @@ public class GuiMainWindow {
 	 * Denne metode kaldes for at oprette et vindue.
 	 * Controller medleverer data i persons.
 	 */
-	public void create(ObservableList<Person> persons){
-		TreeItem<Person> root = new TreeItem<Person>(new Person("Gruppe","",""));
-		root.setExpanded(true);
-		persons.stream().forEach((person) -> {
-			root.getChildren().add(new TreeItem<>(person));
-		});
+	public void create(ObservableList<Group> groups){
 
 		// Kolonner
 		TreeTableColumn<Person, String> nameColumn = new TreeTableColumn<>("Navn");
@@ -44,9 +40,11 @@ public class GuiMainWindow {
 				new ReadOnlyStringWrapper(param.getValue().getValue().getEmailAddress())
 		);
 
-		TreeTableView<Person> treeTableView = new TreeTableView<>(root);
-		treeTableView.getColumns().setAll(nameColumn, phoneColumn);
+		// TreeTableView.
+		TreeTableView<Person> treeTableView = new TreeTableView<>();
+		treeTableView.getColumns().setAll(nameColumn, phoneColumn, emailColumn);
 
+		// Stage og scene.
 		Scene scene = new Scene(treeTableView, 400, 600);
 		primaryStage.setScene(scene);
 		primaryStage.show();

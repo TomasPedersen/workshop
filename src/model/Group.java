@@ -1,6 +1,7 @@
 package model;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -15,6 +16,8 @@ public class Group {
 		this("");	// Opret en gruppe uden navn.
 	}
 	public Group(String name){
+		this.name = new SimpleStringProperty();
+		this.members = FXCollections.observableArrayList();
 		setName(name);
 	}
 
@@ -36,6 +39,7 @@ public class Group {
 		return this.name.toString();
 	}
 	public ObservableList<Person> getMembers() {
+		if(members.size() == 0)members.add(new Person("","",""));
 		return members;
 	}
 }
