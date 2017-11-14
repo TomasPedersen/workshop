@@ -43,7 +43,25 @@ public class GuiMainWindow {
 
 		TableColumn nameCol = new TableColumn("Navn");
 		nameCol.setMinWidth(150);
-		nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+//		nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+		
+		// Custom CellFactory  TODO: Lav også cellFactory for de andre kolonner.
+		nameCol.setCellFactory(column -> {
+			return new TableCell<Person, String>(){
+				@Override
+				protected void 	updateItem(String item, boolean empty){
+					super.updateItem(item, empty);
+					if(item!=null){
+						setStyle("");
+						if(item.equals("Brewer")){
+							setStyle("-fx-background-color: red");
+							System.out.println(item);
+						}
+					}
+					setText(item);
+				}
+			};
+		});
 
 		TableColumn phoneNumberCol = new TableColumn("Telefon");
 		phoneNumberCol.setMinWidth(150);
@@ -52,7 +70,7 @@ public class GuiMainWindow {
 		emailAddressCol.setMinWidth(200);
 		emailAddressCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-
+		// Lav tabellen.
 		table.getColumns().addAll(nameCol, phoneNumberCol, emailAddressCol);
 
 		nameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));

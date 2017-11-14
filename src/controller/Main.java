@@ -26,7 +26,9 @@ public class Main extends Application {
 			group = new Group("Gruppe"+groupIndex++);	// Sæt gruppenavn med nummer og øg nummer.
 			// Tilføj medlemmer til gruppe.
 			for(int i = 0; i < 5; i++){
-				group.add(persons.get(index++));		// Tilføj medlem fra persons og øg index med en.
+				if(index < persons.size()){
+					group.add(persons.get(index++));		// Tilføj medlem fra persons og øg index med en.
+				}
 			}
 			groups.add(group);	// Tilføj gruppen til listen af grupper.
 		}
