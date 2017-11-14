@@ -1,9 +1,9 @@
 package controller;
 
-//import guione.*;	// Den ene GUI.
+import guione.*;	// Den ene GUI.
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import treegui.*;	// Den anden GUI.
+//import treegui.*;	// Den anden GUI.
 import model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -11,24 +11,26 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		// En gruppe til brug i løkkerne.
 		Group group;
+		// En liste til grupper.
 		ObservableList<Group> groups = FXCollections.observableArrayList();
+		// Hent liste med personer.
+		ObservableList<Person> persons = FXCollections.observableArrayList();
+		new Database().readData(persons);
 
-		// Dan grupper.
-		ObservableList<Person> persons = new Data().getData();
-		while(persons.size() > 5) {
-			group = new Group("Gruppe");
-			for (int i = 0; i < 5; i++) {
-				group.add( new Person("Kasper", "42959511","") ); 	// Tag sidste element i listen.
-				persons.remove( 0 );			// Slet sidste element i listen.
+		// Gennemløb listen med personer. TODO: Skal laves om til tilfældigt udvalgt.
+		int groupIndex = 1;
+		int index = 0;
+		while(index < persons.size()){
+			group = new Group("Gruppe"+groupIndex++);	// Sæt gruppenavn med nummer og øg nummer.
+			// Tilføj medlemmer til gruppe.
+			for(int i = 0; i < 5; i++){
+				group.add(persons.get(index++));		// Tilføj medlem fra persons og øg index med en.
 			}
-			groups.add(group);
+			groups.add(group);	// Tilføj gruppen til listen af grupper.
 		}
-		for (Group g:groups
-			 ) {
-			System.out.println("Gruppe: "+g.getName().toString());
-			System.out.println(g.getMembers().get(0).getName());
-		}
-		new GuiMainWindow(primaryStage).create(groups);
+		new GuiMainWindow(primaryStage).create(persons);
+		//new GuiMainWindow(primaryStage).create(groups);
 	}
 }

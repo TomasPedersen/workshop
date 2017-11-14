@@ -42,14 +42,16 @@ public class GuiMainWindow {
 		table.setEditable(false);
 
 		TableColumn nameCol = new TableColumn("Navn");
-		nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		nameCol.setMinWidth(150);
+		nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
 		TableColumn phoneNumberCol = new TableColumn("Telefon");
-		phoneNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		phoneNumberCol.setMinWidth(150);
+		phoneNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		TableColumn emailAddressCol = new TableColumn("Emailadresse");
-		emailAddressCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		emailAddressCol.setMinWidth(200);
+		emailAddressCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
 
 		table.getColumns().addAll(nameCol, phoneNumberCol, emailAddressCol);
 
@@ -109,8 +111,29 @@ public class GuiMainWindow {
 				entriesLabel.setText(addName.getPromptText());
 			}
 		});
+		
+		// Afprøv noget med at expandere tabellen.
+		Button removeButton = new Button("Slet");
+		removeButton.setOnAction(event -> {
+			persons.remove(10, 15);
+		});
+		Button insertButton = new Button("Indsæt");
+		insertButton.setOnAction(event -> {
+			
+			for(int i = 10; i < 15; i++){
+				persons.add(i, new Person("Indsat", "Dummy","Nada"));
+			}
+		});
+		Button showButton = new Button("Vis/skjul");
+		showButton.setOnAction(event -> {
+			emailAddressCol.setVisible(false);
+		});
 
-		HBox hbox = new HBox(addName, addPhone, addEmail, addButton, editButton);
+		// Afprøv noget med at sætte style for en celle.
+		System.out.println(table.getItems().get(0).getClass());
+
+
+		HBox hbox = new HBox(addName, addPhone, addEmail, addButton, editButton, removeButton, insertButton, showButton);
 		VBox vbox = new VBox(createMenu(gmwStage), table, hbox, entriesLabel);
 
 		Scene scene = new Scene(vbox, 800, 800);

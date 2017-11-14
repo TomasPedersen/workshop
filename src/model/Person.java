@@ -1,57 +1,57 @@
 package model;
 
-import javafx.beans.property.SimpleStringProperty;
-
 public class Person {
-	private SimpleStringProperty name;
-	private SimpleStringProperty phoneNumber;
-	private SimpleStringProperty emailAddress;
+	private String name;
+	private String phoneNumber;
+	private String emailAddress;
 	private enum Gender {M,K,NA}
-	Gender gender;
+	private Gender gender;
 
 	public Person (String name, String phoneNumber, String emailAddress, Gender gender){
-		this.name = new SimpleStringProperty(name);
-		this.phoneNumber = new SimpleStringProperty(phoneNumber);
-		this.emailAddress = new SimpleStringProperty(emailAddress);
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.emailAddress = emailAddress;
 		this.gender = gender;
 	}
 	public Person (String name, String phoneNumber, String emailAddress){
 		this(name, phoneNumber, emailAddress, Gender.NA);	// Kald constructer med fire paramtre og tilføj gender som ikke kendt.
 	}
-	
-	public String getName() {
-		return name.get();
+
+	@Override
+	public String toString() {
+		return name+" "+phoneNumber+" "+emailAddress;
 	}
-	
-	public SimpleStringProperty nameProperty() {
+
+	// Getters and setters.
+	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
-		this.name.set(name);
+		this.name = name;
 	}
-	
+
 	public String getPhoneNumber() {
-		return phoneNumber.get();
-	}
-	
-	public SimpleStringProperty phoneNumberProperty() {
 		return phoneNumber;
 	}
-	
+
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber.set(phoneNumber);
+		this.phoneNumber = phoneNumber;
 	}
-	
+
 	public String getEmailAddress() {
-		return emailAddress.get();
-	}
-	
-	public SimpleStringProperty emailAddressProperty() {
 		return emailAddress;
 	}
-	
+
 	public void setEmailAddress(String emailAddress) {
-		this.emailAddress.set(emailAddress);
+		this.emailAddress = emailAddress;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 }
