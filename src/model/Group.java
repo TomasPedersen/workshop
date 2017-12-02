@@ -3,21 +3,24 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * En gruppe består af et navn og en liste af Person.
  */
-public class Group {
+public class Group implements Serializable{
 	private String groupName;
-	private ObservableList<Person> members;
+//	private ObservableList<Person> members;
+	private ArrayList<Person> members = new ArrayList<>();
 
 	// Constructors
 	public Group(){
 		this("");	// Opret en gruppe uden navn.
 	}
 	public Group(String name){
-		System.out.println("Group.constructor");
 		this.groupName = name;
-		this.members = FXCollections.observableArrayList();
+//		this.members = FXCollections.observableArrayList();
 	}
 
 	// Tilføj et medlem.
@@ -25,24 +28,26 @@ public class Group {
 		this.members.add(member);
 	}
 
-	// Slet et medlem.
+	// Slet et medlem fra gruppen.
 	public void remove(int index){
-		System.out.println("Slettes: "+ groupName +"   "+members.get(index)+"  Size: "+members.size());
 		this.members.remove(index);
-		System.out.println("Der er nu "+members.size()+" medlemmer i "+groupName);
 	}
 
 	// Setters
 	public void setGroupName(String groupName){
 		this.groupName = groupName;
 	}
-	public void setMembers(ObservableList<Person> members){
+/*	public void setMembers(ObservableList<Person> members){
 		this.members = members;
 	}
-
+*/
 	// Getters
 	public String getGroupName(){
 		return this.groupName;
 	}
-	public ObservableList<Person> getMembers() { return members; }
+//	public ObservableList<Person> getMembers() { return members; }
+	
+	public ArrayList<Person> getMembers() {
+		return members;
+	}
 }
