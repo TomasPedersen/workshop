@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Indtast data</title>
+</head>
+<body>
+<p><a>Fornavn</a></br>
+    <input type="text" id="nameField" value="Fornavn og initial i efternavn">
+    <a style="color: red" id="nameError"></a></p>
+<p><a>Telefonnummer</a></br>
+    <input type="text" id="phoneField" value="Telefonnummer">
+    <a style="color: red" id="phoneError"></a></p>
+<p><a>Email-adresse</a></br>
+    <input type="text" id="emailField" value="Email-adresse">
+    <a style="color: red" id="emailError"></a></p>
+<p id="url"></p>
+<button onclick="handleOkButton()">Ok</button>
+
+<script>
+    function handleOkButton() {
+        document.getElementById("nameError").innerHTML=document.getElementById("nameField").value;
+        document.getElementById("url").innerHTML=window.location.href;
+    }
+</script>
+
+</body>
+</html>
