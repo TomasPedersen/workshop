@@ -19,7 +19,7 @@ public class Print extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		System.out.println("Print");
 		PrinterJob printerJob = PrinterJob.createPrinterJob();
 //		printerJob.showPrintDialog(primaryStage);

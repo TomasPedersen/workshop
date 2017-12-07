@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Person implements Serializable{
 	private String name;
+	private String initial;
 	private String phoneNumber;
 	private String emailAddress;
 	private enum Gender {M,K,NA}
@@ -30,10 +31,12 @@ public class Person implements Serializable{
 	public String getName() {
 		return name;
 	}
+	public String getInitial(){return initial;}
 
 	public void setName(String name) {
 		this.name = name;
 	}
+	public void setInitial(String initial){this.initial = initial;}
 
 	public String getPhoneNumber() {
 		return phoneNumber;

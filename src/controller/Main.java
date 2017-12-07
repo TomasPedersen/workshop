@@ -12,10 +12,8 @@ public class Main extends Application {
 
 		// Opret dataobjekt. Henter data fra disk eller database.
 		Data data = new Data();
+		
 		new MainWindow(data).start(new Stage());
-
-		// Test at der skrives til disk.
-//		data.saveToDisk();
 //		primaryStage.show(); primaryStage.close();	// For at afslutte når MainWindow ikke startes.
 	}
 }
