@@ -1,9 +1,8 @@
 package controller;
 
+import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import javafx.collections.ObservableList;
 import static model.Constants.*;
-
-//import static model.Constants;
 import model.Group;
 import model.Person;
 import java.sql.*;
@@ -45,6 +44,9 @@ public class Database {		// TODO: Noget med en singleton.
 						resultSet.getString("phone"),
 						resultSet.getString("email")));
 			}
+		} catch(CommunicationsException ce){
+			// Der blev ikke oprettet forbindelse til databasen. Sikkert fordi det er første kørsel og konfigurationsfilen ikke eksisterer.
+			group0.addMember(new Person("","",""));		// Tilføj en tom person til gruppe0. TODO: Det skal nok laves lidt mere elegant.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
