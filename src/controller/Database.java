@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * Henter persons fra en MySQL database.
+ * Henter persons fra en MySQL-database.
  */
 	// TODO: Tilføj gruppe-kolonne til tabel.
 public class Database {		// TODO: Noget med en singleton.
@@ -38,7 +38,7 @@ public class Database {		// TODO: Noget med en singleton.
 			statement = connect.createStatement();
 			resultSet = statement.executeQuery("SELECT first_name,phone,email FROM persons WHERE group_number='0'");	// Hent fra gruppe0.
 			
-			// Kopier resultset til members.
+			// Kopier resultSet til members.
 			while (resultSet.next()) {
 				group0.addMember(new Person(
 						resultSet.getString("first_name"),

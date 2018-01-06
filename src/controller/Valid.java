@@ -40,5 +40,4 @@ public class Valid {
 	// TODO: Initial.
 	// TODO: alder.
 	// TODO: blokering.
-
 }

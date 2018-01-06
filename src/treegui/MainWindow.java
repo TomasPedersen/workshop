@@ -115,6 +115,10 @@ public class MainWindow extends Application {
 				nameField.requestFocus();
 			}
 		});
+		MenuItem updateMI = new MenuItem("Opdater");
+		updateMI.setOnAction(event -> {
+			data.update();
+		});
 		createGroupsMI = new MenuItem("_Dan grupper");
 		createGroupsMI.setOnAction(event -> {
 			chooser.setVisible(true);

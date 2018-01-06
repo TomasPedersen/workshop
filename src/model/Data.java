@@ -73,6 +73,11 @@ public class Data implements Serializable{
 		System.out.println("groups.get(0).getMembers().size(): "+groups.get(0).getMembers().size());
 	}
 
+	// Opdater med nye i databasen.
+	public void update(){
+
+	}
+
 	// Getters
 	public ObservableList<Group> getGroups(){return groups; }
 	/**
