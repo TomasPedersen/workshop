@@ -1,8 +1,5 @@
 package controller;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
 /**
  * 	Check for gyldige værdier.
  */
@@ -29,13 +26,8 @@ public class Valid {
 	// Gyldigt: Email
 	public boolean email(String emailAddress){
 		boolean result = true;
-		try{
-			InternetAddress address = new InternetAddress(emailAddress);
-			address.validate();
-		}catch (AddressException ae){
-			result = false;
-		}
-		return result;
+// TODO: Check om emailadresse er gyldigt format.
+	return result;
 	}
 	// TODO: Initial.
 	// TODO: alder.
