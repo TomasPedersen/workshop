@@ -1,6 +1,6 @@
 package controller;
 
-import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import javafx.collections.ObservableList;
 import static model.Constants.*;
 import model.Group;
@@ -31,7 +31,7 @@ public class Database {		// TODO: Noget med en singleton.
 		Group group0 = new Group("Gruppe0");	// TODO: Kun data fra gruppe0 skal hentes fra databasen.
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+//			Class.forName("com.mysql.jdbc.Driver");     Forældet og unødvendigt.
 			connect = DriverManager.getConnection(connectionString);
 			System.out.println(connectionString);
 			statement = connect.createStatement();
